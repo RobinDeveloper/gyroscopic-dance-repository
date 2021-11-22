@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class SoundMaker : MonoBehaviour
 {
-    
     //[Range(150,250)]  //Creates a slider in the inspector
     [SerializeField] private float m_FrequencyPitch = 150;
- 
+
     //[Range(100,300)]  //Creates a slider in the inspector
     [SerializeField] private float m_FrequencyYaw = 100;
-    
+
     //[Range(200,400)]  //Creates a slider in the inspector
     [SerializeField] private float m_FrequencyRoll = 200;
- 
+
     //[Range(150,250)]  //Creates a slider in the inspector
     [SerializeField] private float m_FrequencyX = 150;
-    
+
     //[Range(100,300)]  //Creates a slider in the inspector
     [SerializeField] private float m_FrequencyY = 100;
- 
+
     //[Range(200,400)]  //Creates a slider in the inspector
     [SerializeField] private float m_FrequencyZ = 400;
-    
+
 
     [SerializeField] private float m_SampleRate = 44100;
     [SerializeField] private float m_WaveLengthInSeconds = 2.0f;
- 
+
     private AudioSource m_AudioSource;
     private int m_TimeIndex = 0;
- 
+
     private void Awake()
     {
         m_AudioSource = gameObject.AddComponent<AudioSource>();
@@ -37,51 +36,47 @@ public class SoundMaker : MonoBehaviour
         m_AudioSource.spatialBlend = 0; //force 2D sound
         m_AudioSource.Stop(); //avoids audiosource from starting to play automatically
     }
-   
-    private void Update()
+
+    public void StartSoundMaker()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (!m_AudioSource.isPlaying)
         {
-            if(!m_AudioSource.isPlaying)
-            {
-                m_TimeIndex = 0;  //resets timer before playing sound
-                m_AudioSource.Play();
-            }
-            else
-            {
-                m_AudioSource.Stop();
-            }
+            m_TimeIndex = 0; //resets timer before playing sound
+            m_AudioSource.Play();
+        }
+        else
+        {
+            m_AudioSource.Stop();
         }
     }
-   
+
     private void OnAudioFilterRead(float[] _data, int _channels)
     {
-        for(int i = 0; i < _data.Length; i+= _channels)
-        {          
+        for (int i = 0; i < _data.Length; i += _channels)
+        {
             _data[i] = CreateSine(m_TimeIndex, m_FrequencyPitch, m_SampleRate);
             _data[i] += CreateSine(m_TimeIndex, m_FrequencyYaw, m_SampleRate);
             _data[i] += CreateSine(m_TimeIndex, m_FrequencyRoll, m_SampleRate);
 
             if (_channels == 2)
             {
-                _data[i+1] = CreateSine(m_TimeIndex, m_FrequencyX, m_SampleRate);
-                _data[i+1] += CreateSine(m_TimeIndex, m_FrequencyY, m_SampleRate);
-                _data[i+1] += CreateSine(m_TimeIndex, m_FrequencyZ, m_SampleRate);
-
+                _data[i + 1] = CreateSine(m_TimeIndex, m_FrequencyX, m_SampleRate);
+                _data[i + 1] += CreateSine(m_TimeIndex, m_FrequencyY, m_SampleRate);
+                _data[i + 1] += CreateSine(m_TimeIndex, m_FrequencyZ, m_SampleRate);
             }
-            
+
             m_TimeIndex++;
-           
+
             //if timeIndex gets too big, reset it to 0
-            if(m_TimeIndex >= (m_SampleRate * m_WaveLengthInSeconds))
+            if (m_TimeIndex >= (m_SampleRate * m_WaveLengthInSeconds))
             {
                 m_TimeIndex = 0;
             }
         }
     }
-   
+
     //Creates a sinewave
-    public float CreateSine(int _timeIndex, float _frequency, float _sampleRate)
+    private float CreateSine(int _timeIndex, float _frequency, float _sampleRate)
     {
         return Mathf.Sin(2 * Mathf.PI * _timeIndex * _frequency / _sampleRate);
     }

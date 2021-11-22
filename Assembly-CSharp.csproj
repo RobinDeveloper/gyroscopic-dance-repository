@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\AudioData.cs" />
      <Compile Include="Assets\Ardity\Scripts\Threads\SerialThread.cs" />
      <Compile Include="Assets\Ardity\Scripts\SerialControllerCustomDelimiter.cs" />
+     <Compile Include="Assets\Scripts\Performance.cs" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>

@@ -334,6 +334,7 @@
 "Assets/Scripts/FastNoise.cs"
 "Assets/Scripts/FlowfieldGeneration.cs"
 "Assets/Scripts/FlowFieldParticle.cs"
+"Assets/Scripts/Performance.cs"
 "Assets/Scripts/SerialListener.cs"
 "Assets/Scripts/SoundMaker.cs"
 -langversion:8.0

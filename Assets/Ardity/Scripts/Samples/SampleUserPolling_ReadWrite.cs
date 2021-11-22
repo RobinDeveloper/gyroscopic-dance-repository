@@ -63,4 +63,10 @@ public class SampleUserPolling_ReadWrite : MonoBehaviour
         else
             Debug.Log("Message arrived: " + message);
     }
+
+    public void SendKey(char _char)
+    {
+        Debug.Log("Sending" + _char);
+        serialController.SendSerialMessage(_char.ToString());
+    }
 }
