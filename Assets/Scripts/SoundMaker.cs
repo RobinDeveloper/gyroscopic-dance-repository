@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,11 +38,28 @@ public class SoundMaker : MonoBehaviour
         m_AudioSource.Stop(); //avoids audiosource from starting to play automatically
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("cocaine");
+            if(!m_AudioSource.isPlaying)
+            {
+                m_TimeIndex = 0;  //resets timer before playing sound
+                m_AudioSource.Play();
+            }
+            else
+            {
+                m_AudioSource.Stop();
+            }
+        }
+    }
+
     public void StartSoundMaker()
     {
-        if (!m_AudioSource.isPlaying)
+        if(!m_AudioSource.isPlaying)
         {
-            m_TimeIndex = 0; //resets timer before playing sound
+            m_TimeIndex = 0;  //resets timer before playing sound
             m_AudioSource.Play();
         }
         else

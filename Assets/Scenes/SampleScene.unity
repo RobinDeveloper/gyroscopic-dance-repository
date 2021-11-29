@@ -230,12 +230,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329ae104084afda4fb38653d19aed6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FrequencyPitch: 150
-  m_FrequencyYaw: 100
-  m_FrequencyRoll: 200
-  m_FrequencyX: 150
-  m_FrequencyY: 100
-  m_FrequencyZ: 200
+  m_FrequencyPitch: 153.9
+  m_FrequencyYaw: 64.4
+  m_FrequencyRoll: 257
+  m_FrequencyX: 250.3
+  m_FrequencyY: 64.2
+  m_FrequencyZ: 257.6
   m_SampleRate: 44100
   m_WaveLengthInSeconds: 2
 --- !u!1 &705507993
@@ -427,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 128384, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
       propertyPath: m_RootOrder
