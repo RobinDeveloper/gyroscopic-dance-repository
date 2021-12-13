@@ -7,7 +7,7 @@ public class Performance : MonoBehaviour
 {
     [Header("Object Refrences")]
     [SerializeField] private SoundMaker m_SoundMaker;
-    //[SerializeField] private SampleUserPolling_ReadWrite m_SerialWriter;
+    [SerializeField] private SampleUserPolling_ReadWrite m_SerialWriter;
     [SerializeField] private Camera[] m_Cameras;
     [SerializeField] private GameObject m_CameraRotateObject;
 
@@ -59,7 +59,7 @@ public class Performance : MonoBehaviour
 
     private void InitializeSerialWriter()
     {
-        //m_SerialWriter.SendKey('f');
+        m_SerialWriter.SendKey('f');
     }
 
     private void InitializeSoundMaker()
@@ -107,15 +107,24 @@ public class Performance : MonoBehaviour
     {
         Debug.Log("StopPreformance");
         m_PreformanceStarted = false;
-        for (int i = 0; i < m_Cameras.Length; i++)
-        {
-            m_Cameras[i].backgroundColor = m_Colours[0];
-        }
+        StopColours();
         for (int i = 0; i < m_Particles.Length; i++)
         {
             m_Particles[i].StopColours();
         }
+        
         m_SoundMaker.StartSoundMaker();
         m_PrefomanceTime = m_PreformanceInitialTime;
+    }
+
+    private float m_T2;
+    private void StopColours()
+    {
+        m_T += Time.deltaTime / 5;
+
+        for (int i = 0; i < m_Cameras.Length; i++)
+        {
+            m_Cameras[i].backgroundColor = Color.Lerp(m_Colours[1], m_Colours[0], m_T);
+        }
     }
 }
