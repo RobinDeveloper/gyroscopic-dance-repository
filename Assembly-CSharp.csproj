@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\FlowfieldGeneration.cs" />
      <Compile Include="Assets\Ardity\Scripts\Threads\SerialThreadCustomDelimiter.cs" />
      <Compile Include="Assets\Ardity\Scripts\Threads\SerialThreadLines.cs" />
+     <Compile Include="Assets\ActivateAllDisplays.cs" />
      <Compile Include="Assets\Scripts\AudioFlowField.cs" />
      <Compile Include="Assets\Ardity\Scripts\SerialController.cs" />
      <Compile Include="Assets\Scripts\AudioData.cs" />

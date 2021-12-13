@@ -42,21 +42,18 @@ public class SoundMaker : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("cocaine");
-            if(!m_AudioSource.isPlaying)
-            {
-                m_TimeIndex = 0;  //resets timer before playing sound
-                m_AudioSource.Play();
-            }
-            else
-            {
-                m_AudioSource.Stop();
-            }
+            StartSoundMaker();
         }
     }
 
+    public void StopSoundMaker()
+    {
+        m_AudioSource.Stop();
+    }
+    
     public void StartSoundMaker()
     {
+        Debug.Log("StartSoundMaker");
         if(!m_AudioSource.isPlaying)
         {
             m_TimeIndex = 0;  //resets timer before playing sound
@@ -103,21 +100,21 @@ public class SoundMaker : MonoBehaviour
     {
         //normalizeValues between the correct values and apply them
 
-        m_FrequencyPitch = _yawPitchRoll.y;
-        m_FrequencyRoll = _yawPitchRoll.z;
-        m_FrequencyYaw = _yawPitchRoll.x;
+        //m_FrequencyPitch = _yawPitchRoll.y;
+        //m_FrequencyRoll = _yawPitchRoll.z;
+        //m_FrequencyYaw = _yawPitchRoll.x;
+//
+        //m_FrequencyX = _accelerationXYZ.x;
+        //m_FrequencyY = _accelerationXYZ.y;
+        //m_FrequencyZ = _accelerationXYZ.z;
 
-        m_FrequencyX = _accelerationXYZ.x;
-        m_FrequencyY = _accelerationXYZ.y;
-        m_FrequencyZ = _accelerationXYZ.z;
+        m_FrequencyPitch = NormalizeValue(-2f,2f,150f,250f,_yawPitchRoll.y);
+        m_FrequencyRoll = NormalizeValue(-2f,2f,200f,400f,_yawPitchRoll.z);
+        m_FrequencyYaw = NormalizeValue(-2f,2f,100f,300f,_yawPitchRoll.x);
 
-        //m_FrequencyPitch = NormalizeValue(-2f,2f,150f,250f,_yawPitchRoll.y);
-        //m_FrequencyRoll = NormalizeValue(-2f,2f,200f,400f,_yawPitchRoll.z);
-        //m_FrequencyYaw = NormalizeValue(-2f,2f,100f,300f,_yawPitchRoll.x);
-
-        //m_FrequencyX = NormalizeValue(-4000f,4000f,150f, 250f, _accelerationXYZ.x);
-        //m_FrequencyY = NormalizeValue(-4000f,4000f,100f, 300f, _accelerationXYZ.y);
-        //m_FrequencyZ = NormalizeValue(-4000f,4000f,200f, 400f, _accelerationXYZ.z);
+        m_FrequencyX = NormalizeValue(-4000f,4000f,150f, 250f, _accelerationXYZ.x);
+        m_FrequencyY = NormalizeValue(-4000f,4000f,100f, 300f, _accelerationXYZ.y);
+        m_FrequencyZ = NormalizeValue(-4000f,4000f,200f, 400f, _accelerationXYZ.z);
     }
 
     private float NormalizeValue(float _rmin, float _rmax, float _tmin, float _tmax, float _value)

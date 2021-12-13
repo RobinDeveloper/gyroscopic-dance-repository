@@ -14,7 +14,7 @@ public class AudioFlowField : MonoBehaviour
     [SerializeField] private Color[] m_Colors;
     
 
-    private void Start()
+    private void Awake()
     {
         m_FlowField = GetComponent<FlowfieldGeneration>();
 
